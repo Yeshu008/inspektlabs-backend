@@ -1,0 +1,21 @@
+# Python
+**/__pycache__/
+
+
+# Virtual Environment
+env/
+
+# Flask
+instance/
+*.db
+
+# Logs and Migrations
+logs/
+migrations/
+
+# IDEs
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

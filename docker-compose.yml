@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      FLASK_ENV: development
+      DATABASE_URL: mysql+pymysql://damageinspect_user:inspectpass@db/inspektlabs
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inspektlabs
+      MYSQL_USER: damageinspect_user
+      MYSQL_PASSWORD: inspectpass
+    ports:
+      - "3306:3306"
