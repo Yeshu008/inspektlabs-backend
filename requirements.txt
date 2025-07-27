@@ -6,3 +6,4 @@ Flask-Bcrypt
 Flask-Migrate
 pydantic
 pymysql
+psycopg2-binary
