@@ -23,9 +23,11 @@ def create_app():
     bcrypt.init_app(app)
 
     from app.routes.auth_routes import auth_bp
+    from app.routes.main_routes import main_bp
     from app.routes.inspection_routes import inspection_bp
     from app.errors.errors import error_bp
 
+    app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(inspection_bp)
     app.register_blueprint(error_bp)
