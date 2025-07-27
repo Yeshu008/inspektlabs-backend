@@ -5,3 +5,4 @@ python-dotenv
 Flask-Bcrypt
 Flask-Migrate
 pydantic
+pymysql
