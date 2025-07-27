@@ -4,6 +4,7 @@
 
 # Virtual Environment
 env/
+.env
 
 # Flask
 instance/
