@@ -1,24 +1,31 @@
 version: '3.8'
+
 services:
-  backend:
-    build: .
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inspektlabs
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  app:
+    image: yeshu008/damageinspection:1
     ports:
       - "5000:5000"
-    volumes:
-      - .:/app
     depends_on:
       - db
     environment:
       FLASK_ENV: development
-      DATABASE_URL: mysql://username:password@localhost/your_db
-
-  db:
-    image: mysql:8.0
+      SECRET_KEY: f90e87c3a1e79c4c47844cc9492dacb8
+      JWT_SECRET_KEY: 29eb41429b7536fd65ba072bc6be38b0
+      SQLALCHEMY_DATABASE_URI: mysql+pymysql://admin:admin123@db:3306/inspektlabs
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: your_db
-      MYSQL_USER: username
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
+
+volumes:
+  db_data:
