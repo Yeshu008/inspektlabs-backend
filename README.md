@@ -22,6 +22,7 @@ A secure and modular REST API built using **Flask** and **MySQL** to manage vehi
 
 ### 🔌 Setup Steps
 
+### Option 1: Run Locally (Manual Setup)
 #### 1️⃣ Clone the Repository
 
 ```bash
@@ -64,6 +65,41 @@ python run.py
 
 > 🚀 The server will start at: [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
+#### Option 2: Run with Docker (Recommended)
+
+If you have Docker and Docker Compose installed, you can run the app and database easily without manual installation:
+
+#### 1️⃣ Start Docker containers
+
+```bash
+docker compose up -d
+```
+>This will start:
+
+   >MySQL database on port 3307
+   >Flask app on port 5000
+
+#### 2️⃣   Initialize and migrate database
+
+>Run these commands inside the running app container to set up your database schema:
+
+```bash
+docker exec app flask db init
+docker exec app flask db migrate -m "initial migration"
+docker exec app flask db upgrade
+```
+#### 3️⃣ Access the app
+>The API will be available at http://localhost:5000.
+
+#### 4️⃣ Stopping the containers
+```bash
+docker compose down
+```
+>Adjust ports in the docker-compose.yml file if needed.
+>To check which post is free run the below command if its free it will not return anything
+```bash
+ netstat -ano | findstr :3306
+```
 ---
 
 ## 🔐 API Authentication
