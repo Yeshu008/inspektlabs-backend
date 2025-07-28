@@ -197,7 +197,7 @@ A full Postman collection is provided:
 
 ---
 
-## ✅ Assessment Goals Covered
+## ✅ Goals Covered
 
 | Requirement                                         | Status  |
 |----------------------------------------------------|---------|
@@ -208,3 +208,9 @@ A full Postman collection is provided:
 | Centralized error handling                         | ✅       |
 | Logging with Python’s logging module               | ✅       |
 | Modular project structure                          | ✅       |
+
+
+🚀 Live API Deployment
+The Vehicle Inspection API is live and accessible at:
+https://inspection-backend-y7gx.onrender.com
+
