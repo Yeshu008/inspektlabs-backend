@@ -4,7 +4,6 @@ from app import db
 from app.models.inspection import Inspection
 from pydantic import ValidationError
 from app.schemas.inspection_schema import InspectionStatusUpdateSchema,InspectionCreateSchema
-from app.utils.validators import validate_image_url
 from app.utils.logger import logger
 
 inspection_bp = Blueprint('inspection', __name__)
