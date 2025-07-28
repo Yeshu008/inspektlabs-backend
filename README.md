@@ -7,7 +7,6 @@ A secure and modular REST API built using **Flask** and **MySQL** to manage vehi
 - ✅ Inspection creation and updates
 - ✅ Full input validation using **Pydantic**
 - ✅ Centralized error handling & logging
-- ✅ Docker-ready setup and CI/CD friendly structure
 
 ---
 
