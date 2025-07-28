@@ -10,15 +10,15 @@ services:
       - db
     environment:
       FLASK_ENV: development
-      DATABASE_URL: mysql+pymysql://damageinspect_user:inspectpass@db/inspektlabs
+      DATABASE_URL: mysql://username:password@localhost/your_db
 
   db:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: inspektlabs
-      MYSQL_USER: damageinspect_user
-      MYSQL_PASSWORD: inspectpass
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: your_db
+      MYSQL_USER: username
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
