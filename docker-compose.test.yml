@@ -19,10 +19,13 @@ services:
       context: .
     command: >
       sh -c "
+      echo '--- FILES IN CONTAINER ---' &&
+      ls -la &&
       ./wait-for-db.sh &&
       if [ ! -d migrations ]; then flask db init; fi &&
       flask db upgrade &&
       pytest --disable-warnings -v"
+
     environment:
       FLASK_ENV: testing
       SECRET_KEY: test-secret
