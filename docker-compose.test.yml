@@ -17,6 +17,7 @@ services:
   test:
     image: yeshu008/damageinspection:${BUILD_ID}
     working_dir: /app
+    restart: always
     command: >
       sh -c "
       echo '--- FILES IN CONTAINER ---' &&
