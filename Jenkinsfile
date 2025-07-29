@@ -1,9 +1,9 @@
 pipeline {
-    agent { 
+    agent {
         docker {
             image 'docker:24.0.7-cli'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
-        } 
+        }
     }
 
     environment {
@@ -11,9 +11,9 @@ pipeline {
         IMAGE_TAG = "${BUILD_ID}"
     }
 
-    triggers{
-        pollSCM '*/5 * * * *'
-    }
+    // triggers{
+    //     pollSCM '*/5 * * * *'
+    // }
     stages {
         stage('Checkout Code') {
             steps {
