@@ -1,5 +1,7 @@
 pipeline {
-    agent { label 'docker-cloud' }
+    agent {
+        label 'docker-agent'
+    }
 
     environment {
         IMAGE_NAME = "yeshu008/damageinspection"
