@@ -30,6 +30,11 @@ pipeline {
             }
         }
 
+        stage('Wait for DB') {
+            steps {
+                sh 'chmod +x wait-for-db.sh && ./wait-for-db.sh'
+            }
+        }
         stage('Run Pytest in Docker') {
             steps {
                 script {
