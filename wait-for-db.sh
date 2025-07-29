@@ -1,14 +1,13 @@
 #!/bin/sh
 
-MYSQL_HOST="${MYSQL_HOST:-db}"  # default to 'db' if not set
-MYSQL_PORT="${MYSQL_PORT:-3306}"
+host="db"
+port=3306
 
-echo "Waiting for MySQL at $MYSQL_HOST:$MYSQL_PORT..."
+echo "Waiting for MySQL at $host:$port..."
 
-until nc -z "$MYSQL_HOST" "$MYSQL_PORT"; do
+while ! nc -z "$host" "$port"; do
   echo "MySQL is unavailable - sleeping"
-  sleep 1
+  sleep 2
 done
 
-echo "MySQL is up - continuing..."
-exec "$@"
+echo "MySQL is up!"
