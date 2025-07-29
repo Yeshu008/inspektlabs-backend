@@ -33,6 +33,8 @@ services:
       SECRET_KEY: test-secret
       JWT_SECRET_KEY: test-jwt-secret
       SQLALCHEMY_DATABASE_URI: mysql+pymysql://admin:admin123@db:3306/inspektlabs
+      DB_HOST: db         # ✅ add this
+      DB_PORT: 3306       # ✅ and this
     depends_on:
       - db
 

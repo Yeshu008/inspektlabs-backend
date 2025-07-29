@@ -1,13 +1,14 @@
 #!/bin/sh
+set -e
 
-host="db"
-port=3306
+HOST="${DB_HOST:-db}"
+PORT="${DB_PORT:-3306}"
 
-echo "Waiting for MySQL at $host:$port..."
+echo "Waiting for MySQL at $HOST:$PORT..."
 
-while ! nc -z "$host" "$port"; do
+while ! nc -z "$HOST" "$PORT"; do
   echo "MySQL is unavailable - sleeping"
-  sleep 2
+  sleep 1
 done
 
 echo "MySQL is up!"
