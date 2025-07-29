@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'docker:24.0.7-cli'
+            image 'docker:dind'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
@@ -21,18 +21,25 @@ pipeline {
             }
         }
 
-        stage('Build and Test') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    docker.image('docker:24.0.7-cli').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
-                        sh 'docker --version'
-                        sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
-                        sh 'docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test'
-                    }
+                    echo "🔨 Building Docker image..."
+                    sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
                 }
             }
         }
 
+        stage('Run Pytest in Docker') {
+            steps {
+                script {
+                    echo "🧪 Running tests inside Docker..."
+                    sh '''
+                    docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test
+                    '''
+                }
+            }
+        }
 
          stage('Push to Docker Hub') {
             when {
