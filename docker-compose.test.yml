@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inspektlabs
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    ports:
+      - "3308:3306"  
+    volumes:
+      - db_test_data:/var/lib/mysql
+
+  test:
+    build:
+      context: .
+    command: >
+      sh -c "
+      flask db upgrade &&
+      pytest --disable-warnings -v"
+    environment:
+      FLASK_ENV: testing
+      SECRET_KEY: test-secret
+      JWT_SECRET_KEY: test-jwt-secret
+      SQLALCHEMY_DATABASE_URI: mysql+pymysql://admin:admin123@db:3306/inspektlabs
+    depends_on:
+      - db
+
+volumes:
+  db_test_data:

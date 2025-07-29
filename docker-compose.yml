@@ -26,6 +26,10 @@ services:
       JWT_SECRET_KEY: 29eb41429b7536fd65ba072bc6be38b0
       SQLALCHEMY_DATABASE_URI: mysql+pymysql://admin:admin123@db:3306/inspektlabs
     restart: always
+    command: >
+      sh -c "
+      flask db upgrade &&
+      flask run"
 
 volumes:
   db_data:

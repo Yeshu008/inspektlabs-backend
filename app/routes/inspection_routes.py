@@ -19,7 +19,7 @@ def create_inspection():
 
     vehicle_number = payload.vehicle_number
     damage_report = payload.damage_report
-    image_url = payload.image_url
+    image_url = str(payload.image_url)
 
     try:
         inspection = Inspection(vehicle_number=vehicle_number,
@@ -37,7 +37,9 @@ def create_inspection():
 @jwt_required()
 def get_inspection(id):
     user_id = int(get_jwt_identity())
-    inspection = Inspection.query.get_or_404(id)
+    inspection = db.session.get(Inspection, id)
+    if not inspection:
+        abort(404)
 
     if inspection.inspected_by != user_id:
         abort(403)
@@ -61,7 +63,10 @@ def update_status(id):
 
     status = payload.status
 
-    inspection = Inspection.query.get_or_404(id)
+    inspection = db.session.get(Inspection, id)
+    if not inspection:
+        abort(404)
+
     if inspection.inspected_by != user_id:
         abort(403)
 

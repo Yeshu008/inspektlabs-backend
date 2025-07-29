@@ -10,3 +10,9 @@ class Config:
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=3)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=7)
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+
+class TestConfig:
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    SECRET_KEY = 'test-secret'
+    JWT_SECRET_KEY = 'test-jwt-secret'
