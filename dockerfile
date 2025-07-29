@@ -10,8 +10,8 @@ COPY . .
 COPY wait-for-db.sh .
 
 RUN chmod +x wait-for-db.sh
-RUN apt-get update && apt-get install -y netcat
-RUN apt-get update && apt-get install -y netcat default-mysql-client
+
+RUN apt-get update && apt-get install -y netcat-openbsd default-mysql-client
 
 ENV FLASK_APP=run.py
 ENV FLASK_RUN_HOST=0.0.0.0
