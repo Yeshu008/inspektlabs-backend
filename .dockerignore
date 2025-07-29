@@ -1,11 +1,7 @@
 **/__pycache__/
-*.pyc
-*.pyo
-*.pyd
 env/
 venv/
 instance/
-*.db
 *.log
 .vscode/
 .git/

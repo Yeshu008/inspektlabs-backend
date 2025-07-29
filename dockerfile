@@ -7,6 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+RUN chmod +x wait-for-db.sh
+
 ENV FLASK_APP=run.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
