@@ -12,7 +12,6 @@ instance/
 
 # Logs and Migrations
 logs/
-migrations/
 
 # IDEs
 .vscode/

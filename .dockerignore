@@ -7,7 +7,6 @@ venv/
 instance/
 *.db
 *.log
-migrations/
 .vscode/
 .git/
 .env
