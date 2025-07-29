@@ -1,5 +1,10 @@
 pipeline {
-    agent { label 'docker-agent' }
+    agent { 
+        docker {
+            image 'docker:24.0.7-cli'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        } 
+    }
 
     environment {
         IMAGE_NAME = "yeshu008/damageinspection:1"
