@@ -10,12 +10,10 @@ env/
 instance/
 *.db
 
-# Logs and Migrations
+# Logs
 logs/
 
 # IDEs
 .vscode/
 
-# OS
-.DS_Store
-Thumbs.db
+
