@@ -7,34 +7,30 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: inspektlabs
-      MYSQL_HOST: db
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin123
     ports:
-      - "3308:3306"  
+      - "3308:3306"
     volumes:
       - db_test_data:/var/lib/mysql
 
   test:
-    build:
-      context: .
+    image: yeshu008/damageinspection:${BUILD_ID}
     working_dir: /app
     command: >
       sh -c "
       echo '--- FILES IN CONTAINER ---' &&
       ls -la &&
       ./wait-for-db.sh &&
-      if [ ! -d migrations ]; then flask db init; fi &&
       flask db upgrade &&
       pytest --disable-warnings -v"
-
     environment:
       FLASK_ENV: testing
       SECRET_KEY: test-secret
       JWT_SECRET_KEY: test-jwt-secret
       SQLALCHEMY_DATABASE_URI: mysql+pymysql://admin:admin123@db:3306/inspektlabs
-      DB_HOST: db         # ✅ add this
-      DB_PORT: 3306       # ✅ and this
+      DB_HOST: db
+      DB_PORT: 3306
     depends_on:
       - db
 

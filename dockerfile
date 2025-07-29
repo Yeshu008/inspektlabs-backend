@@ -1,19 +1,25 @@
 FROM python:3.10-slim
 
+# Set working directory
 WORKDIR /app
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    netcat \
+    default-mysql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy source code
 COPY . .
-
-COPY wait-for-db.sh .
 
 RUN chmod +x wait-for-db.sh
 
-RUN apt-get update && apt-get install -y netcat-openbsd default-mysql-client
+# Expose Flask port (optional)
+EXPOSE 5000
 
-ENV FLASK_APP=run.py
-ENV FLASK_RUN_HOST=0.0.0.0
-
-CMD ["flask", "run"]
+# Default command (can be overridden in docker-compose)
+CMD ["flask", "run", "--host=0.0.0.0"]
