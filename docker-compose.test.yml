@@ -19,6 +19,7 @@ services:
       context: .
     command: >
       sh -c "
+      ./wait-for-db.sh &&
       if [ ! -d migrations ]; then flask db init; fi &&
       flask db upgrade &&
       pytest --disable-warnings -v"
