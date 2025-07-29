@@ -20,8 +20,6 @@ services:
     restart: always
     command: >
       sh -c "
-      echo '--- FILES IN CONTAINER ---' &&
-      ls -la &&
       ./wait-for-db.sh &&
       flask db upgrade &&
       pytest --disable-warnings -v"
