@@ -19,6 +19,7 @@ services:
       context: .
     command: >
       sh -c "
+      if [ ! -d migrations ]; then flask db init; fi &&
       flask db upgrade &&
       pytest --disable-warnings -v"
     environment:
