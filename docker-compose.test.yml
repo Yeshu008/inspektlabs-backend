@@ -7,6 +7,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: inspektlabs
+      MYSQL_HOST: db
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin123
     ports:
