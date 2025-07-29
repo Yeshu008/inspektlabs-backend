@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "yeshu008/damageinspection:1"
+        IMAGE_NAME = "yeshu008/damageinspection"
         IMAGE_TAG = "${BUILD_ID}"
     }
 
