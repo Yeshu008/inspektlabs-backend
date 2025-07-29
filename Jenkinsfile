@@ -1,11 +1,14 @@
 pipeline {
-    agent any
+    agent { label 'docker-agent' }
 
     environment {
         IMAGE_NAME = "yeshu008/damageinspection:1"
         IMAGE_TAG = "${BUILD_ID}"
     }
 
+    triggers{
+        pollSCM '*/5 * * * *'
+    }
     stages {
         stage('Checkout Code') {
             steps {
