@@ -76,15 +76,18 @@ pipeline {
     }
 
     post {
-        always {
+    always {
+        node {
             echo "🧹 Cleaning up Docker containers..."
             sh "docker-compose -f docker-compose.test.yml down || true"
         }
-        failure {
-            echo "❌ Build or test failed."
-        }
-        success {
-            echo "✅ Build, Test, and Push complete."
-        }
     }
+    failure {
+        echo "❌ Build or test failed."
+    }
+    success {
+        echo "✅ Build, Test, and Push complete."
+    }
+}
+
 }
